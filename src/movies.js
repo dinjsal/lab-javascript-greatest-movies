@@ -14,20 +14,24 @@ function getAllDirectors(moviesArray) {
 
 function howManyMovies(moviesArray) {
 
-   const allSpielbergDrama = moviesArray.filter(spielbergMovies => {
-    if (spielbergMovies.director === "Steven Spielberg" && spielbergMovies.genre === "Drama") {
+    
+    const allSpielberg = moviesArray.filter(spielbergMovies => {
+     if (spielbergMovies.director === "Steven Spielberg" && spielbergMovies.genre.includes('Drama')) return true;    
+     })
+    
+ 
+     return allSpielberg.length;
+ }
 
-        return true;
-    }
-   })
-   return allSpielbergDrama.length;
-}
+ console.log(howManyMovies(movies));
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
 
     const sumScores = moviesArray.reduce((acc, curr) => {
-        if (curr.score !== 0) {
+        if (curr.score === 0) return 0;
+        
+        else {
            return acc + curr.score;
         }
     }, 0)
@@ -40,18 +44,26 @@ function scoresAverage(moviesArray) {
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
 
-
-    const allDrama = moviesArray.filter()
-    const sumDrama = moviesArray.reduce((acc1, curr1) => {
-        if (curr1.score !== 0 && curr1.genre === "Drama") {
+    const allDrama = moviesArray.filter(dramaList => {
+        if (dramaList.genre.includes('Drama')) {
+            return true;
+        }
+        else if (dramaList.genre.includes('Drama').length === 0){
             return 0;
         }
-        else if (curr1.genre === "Drama") {
-            return acc1 + curr1.score;
+    })
+         
+
+    const sumDrama = allDrama.reduce((acc1, curr1) => {
+        if (curr1.score === 0) {
+            return 0;
+        }
+        else {
+            return acc1 + curr1.score;  
         }
     }, 0)
 
-    const avgDrama = sumDrama / sumDrama.length;
+    const avgDrama = sumDrama / allDrama.length;
 
     return Number(avgDrama.toFixed(2));
 
