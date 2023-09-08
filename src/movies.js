@@ -23,23 +23,21 @@ function howManyMovies(moviesArray) {
      return allSpielberg.length;
  }
 
- console.log(howManyMovies(movies));
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
 
     const sumScores = moviesArray.reduce((acc, curr) => {
         if (curr.score === 0) return 0;
-        
         else {
-           return acc + curr.score;
-        }
-    }, 0)
-
+            return acc + curr.score;
+        } 
+      
+    }, 0);
+  
     const avgScores = sumScores/moviesArray.length;
-
+  
     return Number(avgScores.toFixed(2));
-}
+  }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
@@ -72,11 +70,17 @@ function dramaMoviesScore(moviesArray) {
 function orderByYear(moviesArray) {
 
     const moviesYear = moviesArray.sort((a, b) => {
-        return a.year - b.year;
-        
+      if (a.year !== b.year) {
+        return a.year - b.year; 
+      } 
+      else if (a.year === b.year) {
+        return a.title - b.title;
+      }
+              
     })
+    
     return Array.from(moviesYear);
-}
+  }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
@@ -86,11 +90,13 @@ function orderAlphabetically(moviesArray) {
     })
     const movieOrdered = movieList.sort();
     const top20 = movieOrdered.slice(0, 20);
-    return top20;
+    return Array.from(top20);
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}

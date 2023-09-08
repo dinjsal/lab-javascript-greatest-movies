@@ -2001,4 +2001,3 @@ const movies = [
     score: 8
   }
 ];
-
